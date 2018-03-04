@@ -64,6 +64,6 @@ nslookup 10.51.1.81
 
 On Unix, /etc/hosts file contains mappings between an IP address and a name of the host. It overrides mappings from DNS.
 
-16. Make the 46.19.122.85 address reroute to intra.42.fr
+-----16. Make the 46.19.122.85 address reroute to intra.42.fr
 
 

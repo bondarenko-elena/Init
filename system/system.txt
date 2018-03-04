@@ -30,7 +30,7 @@ systemctl restart ssh
 
 7. Figure out the PID of the SSHD service.
 
-
+cat /var/run/sshd.pid
 
 8. What file contains the RSA keys that are authorized to connect via SSH?
 
