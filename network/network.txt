@@ -1,15 +1,15 @@
------1. Get the list of the network interfaces of the machine without displaying any detail
+1. Get the list of the network interfaces of the machine without displaying any detail
 for these interfaces. Only the list of names.
 
-ifconfig | cut -d " " -f1 -s | cut -d ":" -f1 -s
+ifconfig -l
 
 2. Identify the IP address of the Ethernet interface
 
-ifconfig en0 | grep "inet "
+ipconfig getifaddr en0
 
------3. Identify the MAC address of the Wi-Fi card
+3. Identify the MAC address of the Wi-Fi card
 
-ifconfig wlan0 grep "Hardware Adress"
+ifconfig wlan0 | grep "HWaddr"
 
 4. Identifiy the default gateway in the routing table
 
@@ -17,7 +17,7 @@ netstat -nr | grep "default"
 
 5. Identify the IP address of the DNS that responds to the following url: slash16.org
 
-nslookup slash16.org
+nslookup slash16.org | awk '/Address/{print $2}' | sed 1d
 
 6. Get the complete path of the file that contains the IP address of the DNS server you’re using
 
@@ -28,7 +28,7 @@ The resolv.conf file typically contains the IP addresses of nameservers (DNS nam
 
 7. Query an external DNS server on the slash16.org domain name (ie. : google 8.8.8.8)
 
-dig -x slash16.org
+nslookup slash16.org 8.8.8.8 | awk '/Address/{print$2}' | sed 1d
 
 8. Find the provider of slash16.org
 
@@ -37,33 +37,44 @@ whois 10.51.1.253
 
 9. Find the external IP of 42.fr
 
-163.172.250.11
-163.172.250.12
+Server:		10.51.1.253
+Address:	10.51.1.253#53
+
+Non-authoritative answer:
+Name:	42.fr
+Address: 163.172.250.11
+Name:	42.fr
+Address: 163.172.250.12
 
 10. Identify the network devices between your computer and the slash16.org domain
 
 traceroute slash16.org
 
------11. Use the output of the previous command to find the name and IP address of the device that makes the link between you (local network) and the outside world
+11. Use the output of the previous command to find the name and IP address of the device that makes the link between you (local network) and the outside world
 
-
+When you connect to another computer, your traffic does not go directly to the machine you are attempting to connect to. Instead it goes through multiple machines on the Internet known as routers. These machines serve the sole purpose of controlling how your traffic gets to your destination. If any one connection fails, you will not be able to connect to the intended destination.
+There is a common utility known as traceroute. The purpose of this utility is to show you the path your traffic takes when you are attempting to connect to another machine.
 
 12. Check that the server with the 10.51.1.253 IP address is reachable from your computer.
 
 ping 10.51.1.253
 
------13. Figure out the server type.
+13. Figure out the server type.
 
-
+nslookup ping 10.51.1.253 ---> DHCP
 
 14. Use the Reverse DNS to find out the name of the server linked to the 10.51.1.81
 
-nslookup 10.51.1.81
+Server:		10.51.1.253
+Address:	10.51.1.253#53
+
+81.1.51.10.in-addr.arpa	name = ldap-proxy.42.fr.
 
 15. What file contains the local DNS entries?
 
 On Unix, /etc/hosts file contains mappings between an IP address and a name of the host. It overrides mappings from DNS.
 
------16. Make the 46.19.122.85 address reroute to intra.42.fr
+16. Make the 46.19.122.85 address reroute to intra.42.fr
 
-
+reroute manually in /etc/hosts
+echo "46.19.122.85  intra.42.fs" >> /etc/hosts
