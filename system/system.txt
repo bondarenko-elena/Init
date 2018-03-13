@@ -18,13 +18,13 @@ uptime
 
 5. Name the command that determines the state of the SSH service.
 
-service ssh status
+sudo service ssh status
 /etc/init.d/ssh status
 systemctl status ssh
 
 6. Name the command that reboots the SSH service.
 
-service ssh restart
+sudo service ssh restart
 /etc/init.d/ssh restart
 systemctl restart ssh
 
@@ -43,6 +43,7 @@ who -a
 10. Name the command that lists the partition tables of external devices?
 
 lsusb
+parted ???
 
 11. Name the command that displays the available space left on the system?
 
@@ -51,6 +52,7 @@ df
 12. Figure out the exact size of each folder of /var
 
 df -h /var/*
+ls -LRlh /var ???
 
 13. Name the command that find currently running processes
 
@@ -67,7 +69,7 @@ pkill
 16. Find the service which makes it possible to run specific tasks following a regular
 schedule
 
- crontab
+crontab
 
 17. Find the command which gives the list of firewall rules
 

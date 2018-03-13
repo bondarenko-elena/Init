@@ -32,15 +32,11 @@ nslookup slash16.org 8.8.8.8 | awk '/Address/{print$2}' | sed 1d
 
 8. Find the provider of slash16.org
 
-nslookup slach16.org
-whois 10.51.1.253
+nslookup slash16.org
+whois 216.137.61.174
 
 9. Find the external IP of 42.fr
 
-Server:		10.51.1.253
-Address:	10.51.1.253#53
-
-Non-authoritative answer:
 Name:	42.fr
 Address: 163.172.250.11
 Name:	42.fr
@@ -55,6 +51,8 @@ traceroute slash16.org
 When you connect to another computer, your traffic does not go directly to the machine you are attempting to connect to. Instead it goes through multiple machines on the Internet known as routers. These machines serve the sole purpose of controlling how your traffic gets to your destination. If any one connection fails, you will not be able to connect to the intended destination.
 There is a common utility known as traceroute. The purpose of this utility is to show you the path your traffic takes when you are attempting to connect to another machine.
 
+provider???
+
 12. Check that the server with the 10.51.1.253 IP address is reachable from your computer.
 
 ping 10.51.1.253
@@ -65,9 +63,6 @@ nslookup ping 10.51.1.253 ---> DHCP
 
 14. Use the Reverse DNS to find out the name of the server linked to the 10.51.1.81
 
-Server:		10.51.1.253
-Address:	10.51.1.253#53
-
 81.1.51.10.in-addr.arpa	name = ldap-proxy.42.fr.
 
 15. What file contains the local DNS entries?
@@ -77,4 +72,4 @@ On Unix, /etc/hosts file contains mappings between an IP address and a name of t
 16. Make the 46.19.122.85 address reroute to intra.42.fr
 
 reroute manually in /etc/hosts
-echo "46.19.122.85  intra.42.fs" >> /etc/hosts
+echo "46.19.122.85  intra.42.fr" >> /etc/hosts
