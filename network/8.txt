@@ -1,0 +1,4 @@
+nslookup slash16.org
+whois 216.137.61.174
+
+amazon.com
