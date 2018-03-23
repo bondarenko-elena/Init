@@ -1,1 +1,1 @@
-lsb_release -da (# apt-get install lsb-release ---> for installing)
+/ etc / debian_version file contains the version of debian installed
