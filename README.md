@@ -1,2 +1,2 @@
 # 9_Init
-The first project of DevOps branch
+This project is an introduction to system administration and networking, proposed by the slash16 team.
